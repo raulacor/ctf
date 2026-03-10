@@ -19,14 +19,14 @@ os.system(f"sublist3r -d {target} -o final.txt")
 os.system(f"echo {target} >> final.txt")
 
 print("Compiling third-level domains. . .")
-os.system("cat final.txt | grep -Po '(\w+\.\)w+\.\w+)$' | sort -u >> third-level.txt")
+os.system("cat final.txt | grep -Po '(\w+\.\w+\.\w+)$' | sort -u >> third-level.txt")
 ##https://regex101.com
 
 print("Gathering full third-level domains. . .")
 os.system("subfinder -dL third-level.txt -o thirdlevels/domain.txt")
 os.system("cat thirdlevels/domain.txt | sort -u >> final.txt")
 
-print("Searching for alive subdomains. . .")
+print("Searching for live subdomains. . .")
 os.system("cat final.txt | sort -u | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443' > probed.txt") 
 #by limiting the port we get to only find the subdomains that actually resolve on the wifi router.
 
