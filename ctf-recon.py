@@ -31,6 +31,9 @@ os.system("mkdir eyewitness")
 print("Running whois. . .")
 os.system(f"whois {target} >> whois.txt")
 
+print("Running ffuf. . .")
+os.system(f"ffuf -u {target} -w /usr/share/wordlists/dirb/common.txt")
+
 #Subdomains:
 print("Running sublist3r. . .")
 os.system(f"sublist3r -d {target} -o final.txt")
