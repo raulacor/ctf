@@ -1,9 +1,5 @@
 import os
-#pip install pynput
-from pynput.keyboard import Key, Controller 
 #https://pynput.readthedocs.io/en/latest/
-
-keyboard = Controller()
 
 os.system("pwd=$(pwd)") #needed for eyewitness
 
@@ -52,7 +48,7 @@ os.system("cat final.txt | sort -u | httprobe -s -p https:443 | sed 's/https\?:\
 #by limiting the port we get to only find the subdomains that actually resolve on the wifi router.
 
 print("Scanning for open ports. . .")
-os.system("nmap -iL probed.txt -T5 -oA scans/scanned.txt")
+os.system("nmap -p- -iL probed.txt -T4 -sV -oA scans/scanned.txt")
 
 print("Running eyewitness. . .")
 os.system(f"eyewitness -f {pwd}probed.txt -d {target}")
