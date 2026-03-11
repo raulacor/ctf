@@ -27,8 +27,8 @@ os.system("mkdir eyewitness")
 print("Running whois. . .")
 os.system(f"whois {target} >> whois.txt")
 
-print("Running ffuf. . .")
-os.system(f"ffuf -u {target} -w /usr/share/wordlists/dirb/common.txt")
+print("Searching web directories with ffuf. . .")
+os.system(f"ffuf -u {target}/FUZZ -w /usr/share/wordlists/dirb/common.txt")
 
 #Subdomains:
 print("Running sublist3r. . .")
@@ -51,4 +51,4 @@ print("Scanning for open ports. . .")
 os.system("nmap -p- -iL probed.txt -T4 -sV -oA scans/scanned.txt")
 
 print("Running eyewitness. . .")
-os.system(f"eyewitness -f {pwd}probed.txt -d {target}")
+os.system(f"eyewitness -f {pwd} probed.txt -d {target}")
